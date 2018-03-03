@@ -65,7 +65,7 @@ public class UserDao {
     }
 
     public void delete(int id) {
-        String sql = "delete * from where id = ?";
+        String sql = "delete * from user where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
