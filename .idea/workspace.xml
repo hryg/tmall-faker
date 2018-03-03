@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5a1f235-a5bb-49ae-bbc2-6285217d3899" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/tmall/dao/PropertyDao.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/tmall/dao/ProductImageDao.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/tmall/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/com/tmall/dao/UserDao.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/tmall/dao/PropertyDao.java" afterPath="$PROJECT_DIR$/src/com/tmall/dao/PropertyDao.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,8 +84,8 @@
       <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tmall/dao/UserDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="159" column="51" lean-forward="false" selection-start-line="159" selection-start-column="51" selection-end-line="159" selection-end-column="51" />
+            <state relative-caret-position="442">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4458#4459#0" expanded="true" />
@@ -103,20 +103,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PropertyDao.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PropertyDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tmall/dao/PropertyDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="120" column="40" lean-forward="true" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
+            <state relative-caret-position="541">
+              <caret line="141" column="0" lean-forward="true" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3563#3564#0" expanded="true" />
-                <element signature="e#3610#3611#0" expanded="true" />
-                <element signature="e#3717#3727#0" expanded="true" />
-                <marker date="1520065151896" expanded="true" signature="427:470" ph="select count... property" />
-                <marker date="1520065151896" expanded="true" signature="1643:1693" ph="update property... " />
-                <marker date="1520065151896" expanded="true" signature="2781:2816" ph="select * fro... property" />
-                <marker date="1520065151896" expanded="true" signature="3753:3803" ph="select * fro... property" />
+                <element signature="e#3535#3536#0" expanded="true" />
+                <element signature="e#3582#3583#0" expanded="true" />
+                <element signature="e#3689#3699#0" expanded="true" />
+                <marker date="1520065371688" expanded="true" signature="399:442" ph="select count... property" />
+                <marker date="1520065371688" expanded="true" signature="1615:1665" ph="update property... " />
+                <marker date="1520065371688" expanded="true" signature="2753:2788" ph="select * fro... property" />
+                <marker date="1520065371688" expanded="true" signature="3725:3775" ph="select * fro... property" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductImageDao.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/tmall/dao/ProductImageDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="422">
+              <caret line="80" column="36" lean-forward="true" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2947#2948#0" expanded="true" />
+                <element signature="e#2994#2995#0" expanded="true" />
+                <element signature="e#3112#3126#0" expanded="true" />
+                <marker date="1520068815557" expanded="true" signature="482:515" ph="select count... productimage" />
+                <marker date="1520068815557" expanded="true" signature="2167:2206" ph="select * fro... productimage" />
+                <marker date="1520068815557" expanded="true" signature="3152:3206" ph="select * fro... productimage" />
               </folding>
             </state>
           </provider>
@@ -221,82 +239,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Order.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/tmall/bean/Order.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#568#569#0" expanded="true" />
-                <element signature="e#593#594#0" expanded="true" />
-                <element signature="e#626#627#0" expanded="true" />
-                <element signature="e#654#655#0" expanded="true" />
-                <element signature="e#690#691#0" expanded="true" />
-                <element signature="e#722#723#0" expanded="true" />
-                <element signature="e#772#773#0" expanded="true" />
-                <element signature="e#814#815#0" expanded="true" />
-                <element signature="e#848#849#0" expanded="true" />
-                <element signature="e#878#879#0" expanded="true" />
-                <element signature="e#924#925#0" expanded="true" />
-                <element signature="e#962#963#0" expanded="true" />
-                <element signature="e#993#994#0" expanded="true" />
-                <element signature="e#1020#1021#0" expanded="true" />
-                <element signature="e#1060#1061#0" expanded="true" />
-                <element signature="e#1092#1093#0" expanded="true" />
-                <element signature="e#1127#1128#0" expanded="true" />
-                <element signature="e#1158#1159#0" expanded="true" />
-                <element signature="e#1206#1207#0" expanded="true" />
-                <element signature="e#1246#1247#0" expanded="true" />
-                <element signature="e#1279#1280#0" expanded="true" />
-                <element signature="e#1308#1309#0" expanded="true" />
-                <element signature="e#1352#1353#0" expanded="true" />
-                <element signature="e#1388#1389#0" expanded="true" />
-                <element signature="e#1426#1427#0" expanded="true" />
-                <element signature="e#1460#1461#0" expanded="true" />
-                <element signature="e#1514#1515#0" expanded="true" />
-                <element signature="e#1560#1561#0" expanded="true" />
-                <element signature="e#1595#1596#0" expanded="true" />
-                <element signature="e#1628#1629#0" expanded="true" />
-                <element signature="e#1678#1679#0" expanded="true" />
-                <element signature="e#1722#1723#0" expanded="true" />
-                <element signature="e#1754#1755#0" expanded="true" />
-                <element signature="e#1784#1785#0" expanded="true" />
-                <element signature="e#1828#1829#0" expanded="true" />
-                <element signature="e#1866#1867#0" expanded="true" />
-                <element signature="e#1903#1904#0" expanded="true" />
-                <element signature="e#1938#1939#0" expanded="true" />
-                <element signature="e#1992#1993#0" expanded="true" />
-                <element signature="e#2040#2041#0" expanded="true" />
-                <element signature="e#2076#2077#0" expanded="true" />
-                <element signature="e#2110#2111#0" expanded="true" />
-                <element signature="e#2162#2163#0" expanded="true" />
-                <element signature="e#2208#2209#0" expanded="true" />
-                <element signature="e#2237#2238#0" expanded="true" />
-                <element signature="e#2264#2265#0" expanded="true" />
-                <element signature="e#2302#2303#0" expanded="true" />
-                <element signature="e#2334#2335#0" expanded="true" />
-                <element signature="e#2367#2368#0" expanded="true" />
-                <element signature="e#2396#2397#0" expanded="true" />
-                <element signature="e#2440#2441#0" expanded="true" />
-                <element signature="e#2476#2477#0" expanded="true" />
-                <element signature="e#2522#2523#0" expanded="true" />
-                <element signature="e#2555#2556#0" expanded="true" />
-                <element signature="e#2616#2617#0" expanded="true" />
-                <element signature="e#2660#2661#0" expanded="true" />
-                <element signature="e#2695#2696#0" expanded="true" />
-                <element signature="e#2729#2730#0" expanded="true" />
-                <element signature="e#2780#2781#0" expanded="true" />
-                <element signature="e#2826#2827#0" expanded="true" />
-                <element signature="e#2857#2858#0" expanded="true" />
-                <element signature="e#2885#2886#0" expanded="true" />
-                <element signature="e#2926#2927#0" expanded="true" />
-                <element signature="e#2960#2961#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Property.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/tmall/bean/Property.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -355,6 +297,7 @@
         <option value="$PROJECT_DIR$/src/com/tmall/dao/CategoryDao.java" />
         <option value="$PROJECT_DIR$/src/com/tmall/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/com/tmall/dao/PropertyDao.java" />
+        <option value="$PROJECT_DIR$/src/com/tmall/dao/ProductImageDao.java" />
       </list>
     </option>
   </component>
@@ -571,12 +514,12 @@
       <updated>1519874917487</updated>
       <workItem from="1519874919808" duration="3786000" />
       <workItem from="1519885286377" duration="3742000" />
-      <workItem from="1519890534126" duration="29916000" />
+      <workItem from="1519890534126" duration="32611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37444000" />
+    <option name="totallyTimeSpent" value="40139000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1010" extended-state="6" />
@@ -1339,8 +1282,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tmall/dao/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="159" column="51" lean-forward="false" selection-start-line="159" selection-start-column="51" selection-end-line="159" selection-end-column="51" />
+        <state relative-caret-position="442">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4458#4459#0" expanded="true" />
@@ -1359,17 +1302,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tmall/dao/PropertyDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="120" column="40" lean-forward="true" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
+        <state relative-caret-position="541">
+          <caret line="141" column="0" lean-forward="true" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3563#3564#0" expanded="true" />
-            <element signature="e#3610#3611#0" expanded="true" />
-            <element signature="e#3717#3727#0" expanded="true" />
-            <marker date="1520065151896" expanded="true" signature="427:470" ph="select count... property" />
-            <marker date="1520065151896" expanded="true" signature="1643:1693" ph="update property... " />
-            <marker date="1520065151896" expanded="true" signature="2781:2816" ph="select * fro... property" />
-            <marker date="1520065151896" expanded="true" signature="3753:3803" ph="select * fro... property" />
+            <element signature="e#3535#3536#0" expanded="true" />
+            <element signature="e#3582#3583#0" expanded="true" />
+            <element signature="e#3689#3699#0" expanded="true" />
+            <marker date="1520065371688" expanded="true" signature="399:442" ph="select count... property" />
+            <marker date="1520065371688" expanded="true" signature="1615:1665" ph="update property... " />
+            <marker date="1520065371688" expanded="true" signature="2753:2788" ph="select * fro... property" />
+            <marker date="1520065371688" expanded="true" signature="3725:3775" ph="select * fro... property" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/tmall/dao/ProductImageDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="80" column="36" lean-forward="true" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2947#2948#0" expanded="true" />
+            <element signature="e#2994#2995#0" expanded="true" />
+            <element signature="e#3112#3126#0" expanded="true" />
+            <marker date="1520068815557" expanded="true" signature="482:515" ph="select count... productimage" />
+            <marker date="1520068815557" expanded="true" signature="2167:2206" ph="select * fro... productimage" />
+            <marker date="1520068815557" expanded="true" signature="3152:3206" ph="select * fro... productimage" />
           </folding>
         </state>
       </provider>

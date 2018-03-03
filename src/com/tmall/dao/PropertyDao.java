@@ -2,7 +2,6 @@ package com.tmall.dao;
 
 import com.tmall.bean.Category;
 import com.tmall.bean.Property;
-import com.tmall.bean.User;
 import com.tmall.util.DBUtil;
 
 import java.sql.Connection;
