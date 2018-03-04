@@ -132,7 +132,7 @@ public class ReviewDAO {
     }
 
     public int getCount(int pid) {
-        String sql = "select count(*) from Review where pid = ? ";
+        String sql = "select count(*) from review where pid = ? ";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
@@ -151,7 +151,7 @@ public class ReviewDAO {
 
     public List<Review> list(int pid, int start, int count) {
         List<Review> reviews = new ArrayList<Review>();
-        String sql = "select * from Review where pid = ? order by id desc limit ?,? ";
+        String sql = "select * from review where pid = ? order by id desc limit ?,? ";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
@@ -178,7 +178,7 @@ public class ReviewDAO {
 
     public boolean isExist(String content, int pid) {
 
-        String sql = "select * from Review where content = ? and pid = ?";
+        String sql = "select * from review where content = ? and pid = ?";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, content);
