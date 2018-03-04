@@ -65,11 +65,6 @@ public class PropertyDao {
             statement.setInt(3, property.getId());
             statement.execute();
 
-            ResultSet resultSet = statement.getGeneratedKeys();
-            while (resultSet.next()) {
-                property.setId(resultSet.getInt(1));
-            }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
