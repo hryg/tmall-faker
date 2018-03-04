@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductImageDao {
+public class ProductImageDAO {
     public static final String TYPE_SINGLE = "type_single";
     public static final String TYPE_DETAIL = "type_detail";
 

@@ -1,17 +1,17 @@
 package com.tmall.dao;
 
-import com.tmall.bean.Category;
+import com.tmall.bean.PropertyValue;
 import com.tmall.util.DBUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDao {
+public class PropertyValueDAO {
 
     public int getTotal() {
         int total = 0;
-        String sql = "select count(*) form category";
+        String sql = "select count(*) form propertyvalue";
 
         try (Connection connection = DBUtil.getConnection();
              Statement statement = connection.createStatement();) {
@@ -28,18 +28,20 @@ public class CategoryDao {
         return total;
     }
 
-    public void add(Category bean) {
-        String sql = "insert into category values(null, ?)";
+    public void add(PropertyValue propertyValue) {
+        String sql = "insert to propertyvalue values(null, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, bean.getName());
+            statement.setInt(1, propertyValue.getProduct().getId());
+            statement.setInt(2, propertyValue.getProperty().getId());
+            statement.setString(3, propertyValue.getValue());
             statement.execute();
 
             ResultSet resultSet = statement.getGeneratedKeys();
             while (resultSet.next()) {
-                bean.setId(resultSet.getInt(1));
+                propertyValue.setId(resultSet.getInt(1));
             }
 
         } catch (SQLException e) {
@@ -47,14 +49,16 @@ public class CategoryDao {
         }
     }
 
-    public void update(Category bean) {
-        String sql = "update category set name = ? where id = ?";
+    public void update(PropertyValue propertyValue) {
+        String sql = "update propertyvalue set pid = ?, ptid = ?, value = ? where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, bean.getName());
-            statement.setInt(1, bean.getId());
+            statement.setInt(1, propertyValue.getProduct().getId());
+            statement.setInt(2, propertyValue.getProperty().getId());
+            statement.setString(3, propertyValue.getValue());
+            statement.setInt(4, propertyValue.getId());
             statement.execute();
 
         } catch (SQLException e) {
@@ -63,7 +67,7 @@ public class CategoryDao {
     }
 
     public void delete(int id) {
-        String sql = "delete from category where id = ?";
+        String sql = "delete * from propertyvalue where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -76,37 +80,38 @@ public class CategoryDao {
         }
     }
 
-    public Category get(int id) {
-        String sql = "select * from category where id = ?";
-        Category category = null;
+    public PropertyValue get(int id) {
+        PropertyValue propertyValue = null;
+        String sql = "select * from propertyvalue where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, id);
-            statement.execute();
 
-            ResultSet resultSet = statement.getResultSet();
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                category = new Category();
-                category.setId(resultSet.getInt(1));
-                category.setName(resultSet.getString(2));
+                propertyValue = new PropertyValue();
+                propertyValue.setId(id);
+//                propertyValue.setProduct(new ProductDao().get(resultSet.getInt("pid")));
+                propertyValue.setProperty(new PropertyDAO().get(resultSet.getInt("ptid")));
+                propertyValue.setValue(resultSet.getString("value"));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return category;
+        return propertyValue;
     }
 
-    public List<Category> list() {
+    public List<PropertyValue> list() {
         return list(0, Short.MAX_VALUE);
     }
 
-    public List<Category> list(int start, int count) {
-        List<Category> categories = new ArrayList<Category>();
-        String sql = "select * from category order by id desc limit ?, ?";
+    public List<PropertyValue> list(int start, int count) {
+        List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
+        String sql = "select * from propertyvalue order by id desc limit ?, ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -116,16 +121,20 @@ public class CategoryDao {
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Category category = new Category();
-                category.setId(resultSet.getInt(1));
-                category.setName(resultSet.getString(2));
-                categories.add(category);
+                PropertyValue propertyValue = new PropertyValue();
+                propertyValue.setId(resultSet.getInt("id"));
+//                propertyValue.setProduct(new ProductDao().get(resultSet.getInt("pid")));
+                propertyValue.setProperty(new PropertyDAO().get(resultSet.getInt("ptid")));
+                propertyValue.setValue(resultSet.getString("value"));
+
+                propertyValues.add(propertyValue);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return categories;
+        return propertyValues;
     }
+
 }

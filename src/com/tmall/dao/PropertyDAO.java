@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PropertyDao {
+public class PropertyDAO {
 
     public int getTotal(int cid) {
         int total = 0;
@@ -100,7 +100,7 @@ public class PropertyDao {
                 property.setName(resultSet.getString("name"));
 
                 int cid = resultSet.getInt("cid");
-                Category category = new CategoryDao().get(cid);
+                Category category = new CategoryDAO().get(cid);
                 property.setCategory(category);
             }
 
@@ -132,7 +132,7 @@ public class PropertyDao {
                 property.setName(resultSet.getString("name"));
 
                 int cid = resultSet.getInt("cid");
-                Category category = new CategoryDao().get(cid);
+                Category category = new CategoryDAO().get(cid);
                 property.setCategory(category);
 
                 properties.add(property);
