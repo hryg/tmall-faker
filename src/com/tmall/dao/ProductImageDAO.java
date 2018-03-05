@@ -86,8 +86,8 @@ public class ProductImageDAO {
                 productImage.setId(id);
                 productImage.setType(resultSet.getString("type"));
 
-//                Product product = new ProductDao.get(resultSet.getInt("pid"));
-//                productImage.setProduct(product);
+                Product product = new ProductDAO().get(resultSet.getInt("pid"));
+                productImage.setProduct(product);
             }
 
         } catch (SQLException e) {
@@ -97,29 +97,28 @@ public class ProductImageDAO {
         return productImage;
     }
 
-    public List<ProductImage> list() {
-        return list(0, Short.MAX_VALUE);
+    public List<ProductImage> list(Product product, String type) {
+        return list(product, type, 0, Short.MAX_VALUE);
     }
 
-    public List<ProductImage> list(int start, int count) {
+    public List<ProductImage> list(Product product, String type, int start, int count) {
         List<ProductImage> productImages = new ArrayList<ProductImage>();
-        String sql = "select * from productimage order by id desc limit ?, ?";
+        String sql = "select * from productimage where pid = ? and type = ? order by id desc limit ?, ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, start);
-            statement.setInt(2, count);
+            statement.setInt(1, product.getId());
+            statement.setString(2, type);
+            statement.setInt(3, start);
+            statement.setInt(4, count);
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 ProductImage productImage = new ProductImage();
                 productImage.setId(resultSet.getInt("id"));
                 productImage.setType(resultSet.getString("type"));
-
-//                Product product = new ProductDao.get(resultSet.getInt("pid"));
-//                productImage.setProduct(product);
-
+                productImage.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 productImages.add(productImage);
             }
 

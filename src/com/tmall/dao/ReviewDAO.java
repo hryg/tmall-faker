@@ -116,7 +116,7 @@ public class ReviewDAO {
                 review.setId(id);
                 review.setContent(resultSet.getString("content"));
                 review.setUser(new UserDAO().get(resultSet.getInt("uid")));
-//                review.setProduct(new ProductDao().get(resultSet.getInt("pid")));
+                review.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 review.setCreateDate(DateUtil.t2d(resultSet.getTimestamp("createDate")));
             }
 
@@ -166,7 +166,7 @@ public class ReviewDAO {
                 bean.setContent(resultSet.getString("content"));
                 bean.setUser(new UserDAO().get(resultSet.getInt("uid")));
                 bean.setCreateDate(DateUtil.t2d(resultSet.getTimestamp("createDate")));
-//                bean.setProduct(new ProductDAO().get(pid));
+                bean.setProduct(new ProductDAO().get(pid));
                 reviews.add(bean);
             }
         } catch (SQLException e) {

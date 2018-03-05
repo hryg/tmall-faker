@@ -102,7 +102,7 @@ public class OrderItemDAO {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 orderItem.setId(id);
-//                orderItem.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
+                orderItem.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 orderItem.setOrder(new OrderDAO().get(resultSet.getInt("oid")));
                 orderItem.setUser(new UserDAO().get(resultSet.getInt("uid")));
                 orderItem.setNumber(resultSet.getInt("number"));
@@ -170,7 +170,7 @@ public class OrderItemDAO {
                 OrderItem orderItem = new OrderItem();
 
                 orderItem.setId(resultSet.getInt("id"));
-//                orderItem.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
+                orderItem.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 orderItem.setOrder(new OrderDAO().get(resultSet.getInt("oid")));
                 orderItem.setUser(new UserDAO().get(resultSet.getInt("uid")));
                 orderItem.setNumber(resultSet.getInt("number"));
@@ -205,7 +205,7 @@ public class OrderItemDAO {
                 OrderItem orderItem = new OrderItem();
 
                 orderItem.setId(resultSet.getInt("id"));
-//                orderItem.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
+                orderItem.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 orderItem.setOrder(new OrderDAO().get(resultSet.getInt("oid")));
                 orderItem.setUser(new UserDAO().get(resultSet.getInt("uid")));
                 orderItem.setNumber(resultSet.getInt("number"));

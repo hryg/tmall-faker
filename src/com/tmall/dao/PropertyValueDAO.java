@@ -93,7 +93,7 @@ public class PropertyValueDAO {
             while (resultSet.next()) {
                 propertyValue = new PropertyValue();
                 propertyValue.setId(id);
-//                propertyValue.setProduct(new ProductDao().get(resultSet.getInt("pid")));
+                propertyValue.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 propertyValue.setProperty(new PropertyDAO().get(resultSet.getInt("ptid")));
                 propertyValue.setValue(resultSet.getString("value"));
             }
@@ -123,7 +123,7 @@ public class PropertyValueDAO {
             while (resultSet.next()) {
                 PropertyValue propertyValue = new PropertyValue();
                 propertyValue.setId(resultSet.getInt("id"));
-//                propertyValue.setProduct(new ProductDao().get(resultSet.getInt("pid")));
+                propertyValue.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 propertyValue.setProperty(new PropertyDAO().get(resultSet.getInt("ptid")));
                 propertyValue.setValue(resultSet.getString("value"));
 
