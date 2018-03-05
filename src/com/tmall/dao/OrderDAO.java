@@ -1,10 +1,14 @@
 package com.tmall.dao;
 
 import com.tmall.bean.Order;
+import com.tmall.bean.PropertyValue;
+import com.tmall.bean.User;
 import com.tmall.util.DBUtil;
 import com.tmall.util.DateUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDAO {
     public static final String WAIT_PAY = "waitPay";
@@ -14,7 +18,7 @@ public class OrderDAO {
     public static final String FINISH = "finish";
     public static final String DELETE = "delete";
 
-    public int getTotal(){
+    public int getTotal() {
         int total = 0;
         String sql = "select count(*) from order_";
 
@@ -89,5 +93,139 @@ public class OrderDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void delete(int id) {
+        String sql = "delete * from order_ where id = ?";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+            statement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Order get(int id) {
+        Order order = null;
+        String sql = "select * from order_ where id = ?";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                order.setOrderCode(resultSet.getString("orderCode"));
+                order.setAddress(resultSet.getString("address"));
+                order.setPost(resultSet.getString("post"));
+                order.setReceiver(resultSet.getString("receiver"));
+                order.setMobile(resultSet.getString("mobile"));
+                order.setUserMessage(resultSet.getString("userMessage"));
+                order.setCreateDate(DateUtil.t2d(resultSet.getTimestamp("createDate")));
+                order.setPayDate(DateUtil.t2d(resultSet.getTimestamp("payDate")));
+                order.setDeliveryDate(DateUtil.t2d(resultSet.getTimestamp("deliveryDate")));
+                order.setConfirmDate(DateUtil.t2d(resultSet.getTimestamp("confirmDate")));
+                order.setUser(new UserDAO().get(resultSet.getInt("uid")));
+                order.setStatus(resultSet.getString("status"));
+                order.setId(id);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return order;
+    }
+
+    public List<Order> list() {
+        return list(0, Short.MAX_VALUE);
+    }
+
+    public List<Order> list(int start, int count) {
+        List<Order> orders = new ArrayList<Order>();
+        String sql = "select * from propertyvalue order by id desc limit ?, ?";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, start);
+            statement.setInt(2, count);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+
+                order.setId(resultSet.getInt("id"));
+                order.setOrderCode(resultSet.getString("orderCode"));
+                order.setAddress(resultSet.getString("address"));
+                order.setPost(resultSet.getString("post"));
+                order.setReceiver(resultSet.getString("receiver"));
+                order.setMobile(resultSet.getString("mobile"));
+                order.setUserMessage(resultSet.getString("userMessage"));
+                order.setCreateDate(DateUtil.t2d(resultSet.getTimestamp("createDate")));
+                order.setPayDate(DateUtil.t2d(resultSet.getTimestamp("payDate")));
+                order.setDeliveryDate(DateUtil.t2d(resultSet.getTimestamp("deliveryDate")));
+                order.setConfirmDate(DateUtil.t2d(resultSet.getTimestamp("confirmDate")));
+                order.setUser(new UserDAO().get(resultSet.getInt("uid")));
+                order.setStatus(resultSet.getString("status"));
+
+                orders.add(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+
+    public List<Order> list(int uid, String excludedStatus) {
+        return list(uid, excludedStatus, 0, Short.MAX_VALUE);
+    }
+
+    public List<Order> list(int uid, String excludedStatus, int start, int count) {
+        List<Order> orders = new ArrayList<Order>();
+
+        String sql = "select * from order_ where uid = ? and status != ? order by id desc limit ?,? ";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
+
+            preparedStatement.setInt(1, uid);
+            preparedStatement.setString(2, excludedStatus);
+            preparedStatement.setInt(3, start);
+            preparedStatement.setInt(4, count);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Order order = new Order();
+
+                order.setId(resultSet.getInt("id"));
+                order.setOrderCode(resultSet.getString("orderCode"));
+                order.setAddress(resultSet.getString("address"));
+                order.setPost(resultSet.getString("post"));
+                order.setReceiver(resultSet.getString("receiver"));
+                order.setMobile(resultSet.getString("mobile"));
+                order.setUserMessage(resultSet.getString("userMessage"));
+                order.setCreateDate(DateUtil.t2d(resultSet.getTimestamp("createDate")));
+                order.setPayDate(DateUtil.t2d(resultSet.getTimestamp("payDate")));
+                order.setDeliveryDate(DateUtil.t2d(resultSet.getTimestamp("deliveryDate")));
+                order.setConfirmDate(DateUtil.t2d(resultSet.getTimestamp("confirmDate")));
+                order.setUser(new UserDAO().get(resultSet.getInt("uid")));
+                order.setStatus(resultSet.getString("status"));
+
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return orders;
     }
 }
