@@ -1,8 +1,6 @@
 package com.tmall.dao;
 
 import com.tmall.bean.Order;
-import com.tmall.bean.PropertyValue;
-import com.tmall.bean.User;
 import com.tmall.util.DBUtil;
 import com.tmall.util.DateUtil;
 
