@@ -22,5 +22,6 @@
     <orderEntry type="library" name="mysql-connector-java-5.0.8-bin" level="project" />
     <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="library" name="commons-lang-2.5" level="project" />
+    <orderEntry type="library" name="commons-fileupload-1.2.2" level="project" />
   </component>
 </module>
