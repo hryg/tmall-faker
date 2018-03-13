@@ -45,7 +45,7 @@ public class CategoryServlet extends BaseBackServlet {
     }
 
     @Override
-    public String udpate(HttpServletRequest request, HttpServletResponse response) {
+    public String update(HttpServletRequest request, HttpServletResponse response) {
         Map<String, String> params = new HashMap<String, String>();
         InputStream is = super.parseUpload(request, params);
 

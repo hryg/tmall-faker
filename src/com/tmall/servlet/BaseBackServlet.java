@@ -25,7 +25,7 @@ public abstract class BaseBackServlet extends HttpServlet {
     public abstract String add(HttpServletRequest request, HttpServletResponse response);
     public abstract String delete(HttpServletRequest request, HttpServletResponse response);
     public abstract String edit(HttpServletRequest request, HttpServletResponse response);
-    public abstract String udpate(HttpServletRequest request, HttpServletResponse response);
+    public abstract String update(HttpServletRequest request, HttpServletResponse response);
     public abstract String list(HttpServletRequest request, HttpServletResponse response);
 
     protected CategoryDAO categoryDAO = new CategoryDAO();
