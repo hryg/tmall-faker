@@ -69,4 +69,18 @@ public class Page {
         last = last < 0 ? 0 : last;
         return last;
     }
+
+    public boolean isHasPreviouse() {
+        if (start == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isHasNext() {
+        if (start == getLast()) {
+            return false;
+        }
+        return true;
+    }
 }

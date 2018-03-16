@@ -1,6 +1,7 @@
 package com.tmall.servlet;
 
 import com.tmall.dao.*;
+import com.tmall.util.Page;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -22,11 +23,11 @@ public abstract class BaseBackServlet extends HttpServlet {
     private static final String CLIENT_REDIRECT_PREFIX = "@";
     private static final String RESPONSE_STRING_PREFIX = "%";
 
-    public abstract String add(HttpServletRequest request, HttpServletResponse response);
-    public abstract String delete(HttpServletRequest request, HttpServletResponse response);
-    public abstract String edit(HttpServletRequest request, HttpServletResponse response);
-    public abstract String update(HttpServletRequest request, HttpServletResponse response);
-    public abstract String list(HttpServletRequest request, HttpServletResponse response);
+    public abstract String add(HttpServletRequest request, HttpServletResponse response, Page page);
+    public abstract String delete(HttpServletRequest request, HttpServletResponse response, Page page);
+    public abstract String edit(HttpServletRequest request, HttpServletResponse response, Page page);
+    public abstract String update(HttpServletRequest request, HttpServletResponse response, Page page);
+    public abstract String list(HttpServletRequest request, HttpServletResponse response, Page page);
 
     protected CategoryDAO categoryDAO = new CategoryDAO();
     protected OrderDAO orderDAO = new OrderDAO();
@@ -46,12 +47,12 @@ public abstract class BaseBackServlet extends HttpServlet {
             int count = 5;
             start = Integer.parseInt(request.getParameter("page.start"));
             count = Integer.parseInt(request.getParameter("page.count"));
-//            Page page = new Page(start, count);
+            Page page = new Page(start, count);
 
             // 通过反射，调用对应的方法
             String method = (String) request.getAttribute("method");
-            Method m = this.getClass().getMethod(method, HttpServletRequest.class, javax.servlet.http.HttpServletResponse.class);
-            String redirect = m.invoke(this, request, response).toString();
+            Method m = this.getClass().getMethod(method, HttpServletRequest.class, javax.servlet.http.HttpServletResponse.class, Page.class);
+            String redirect = m.invoke(this, request, response, page).toString();
 
             // 根据方法的返回值，进行相应客户端或服务端跳转
             if (redirect.startsWith(CLIENT_REDIRECT_PREFIX)) {

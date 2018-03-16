@@ -2,6 +2,7 @@ package com.tmall.servlet;
 
 import com.tmall.bean.Category;
 import com.tmall.util.ImageUtil;
+import com.tmall.util.Page;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +13,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CategoryServlet extends BaseBackServlet {
 
     @Override
-    public String add(HttpServletRequest request, HttpServletResponse response) {
+    public String add(HttpServletRequest request, HttpServletResponse response, Page page) {
         Map<String, String> params = new HashMap<String, String>();
         InputStream is = super.parseUpload(request, params);
 
@@ -30,14 +32,14 @@ public class CategoryServlet extends BaseBackServlet {
     }
 
     @Override
-    public String delete(HttpServletRequest request, HttpServletResponse response) {
+    public String delete(HttpServletRequest request, HttpServletResponse response, Page page) {
         int id = Integer.parseInt(request.getParameter("id"));
         categoryDAO.delete(id);
         return "@admin_category_list";
     }
 
     @Override
-    public String edit(HttpServletRequest request, HttpServletResponse response) {
+    public String edit(HttpServletRequest request, HttpServletResponse response, Page page) {
         int id = Integer.parseInt(request.getParameter("id"));
         Category category = categoryDAO.get(id);
         request.setAttribute("category", category);
@@ -45,7 +47,7 @@ public class CategoryServlet extends BaseBackServlet {
     }
 
     @Override
-    public String update(HttpServletRequest request, HttpServletResponse response) {
+    public String update(HttpServletRequest request, HttpServletResponse response, Page page) {
         Map<String, String> params = new HashMap<String, String>();
         InputStream is = super.parseUpload(request, params);
 
@@ -59,8 +61,12 @@ public class CategoryServlet extends BaseBackServlet {
     }
 
     @Override
-    public String list(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
+        List<Category> cs = categoryDAO.list(page.getStart(), page.getCount());
+        page.setTotal(categoryDAO.getTotal());
+        request.setAttribute("thecs", cs);
+        request.setAttribute("page", page);
+        return "admin/listCategory.jsp";
     }
 
     /**
