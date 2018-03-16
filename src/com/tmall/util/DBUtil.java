@@ -10,7 +10,7 @@ public class DBUtil {
     static String encoding = "UTF-8";
 
     /** 数据库名称 */
-    static String database = "tmall_faker";
+    static String database = "tmall";
 
     /** 登录用户名 */
     static String loginName = "root";
@@ -27,7 +27,7 @@ public class DBUtil {
     }
 
     public static Connection getConnection() throws SQLException {
-        String url = String.format("jdbc:mysql://%s:%d:/%s?characterEncoding=%s", ip, port, database, encoding);
+        String url = String.format("jdbc:mysql://%s:%d/%s?characterEncoding=%s", ip, port, database, encoding);
         return DriverManager.getConnection(url, loginName, password);
     }
 

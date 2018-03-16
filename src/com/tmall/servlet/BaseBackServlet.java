@@ -45,8 +45,12 @@ public abstract class BaseBackServlet extends HttpServlet {
             // 获取分页信息
             int start = 0;
             int count = 5;
-            start = Integer.parseInt(request.getParameter("page.start"));
-            count = Integer.parseInt(request.getParameter("page.count"));
+            try {
+                start = Integer.parseInt(request.getParameter("page.start"));
+                count = Integer.parseInt(request.getParameter("page.count"));
+            } catch (Exception e) {
+                System.out.println(e);
+            }
             Page page = new Page(start, count);
 
             // 通过反射，调用对应的方法

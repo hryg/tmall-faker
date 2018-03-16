@@ -11,7 +11,7 @@ import java.io.IOException;
 public class BackServletFilter implements Filter {
     private static String SEPARATOR = "_";
     private static String SERVLET_PREFIX = "/admin";
-    private static String SERVLET_SUFFIX = "servlet";
+    private static String SERVLET_SUFFIX = "Servlet";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
