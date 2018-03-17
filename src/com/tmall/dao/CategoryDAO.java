@@ -11,7 +11,7 @@ public class CategoryDAO {
 
     public int getTotal() {
         int total = 0;
-        String sql = "select count(*) form category";
+        String sql = "select count(*) from category";
 
         try (Connection connection = DBUtil.getConnection();
              Statement statement = connection.createStatement();) {

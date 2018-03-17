@@ -7,14 +7,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<<script>
+<script>
 $(function() {
 $("ul.pagination li.disable a").click(function() {
-    return false;
+return false;
 });
 })
 </script>
-
 
 <nav>
     <ul class="pagination">
@@ -33,8 +32,9 @@ $("ul.pagination li.disable a").click(function() {
         <c:forEach begin="0" end="${page.totalPage-1}" varStatus="status">
             <c:if test="${status.count * page.count - page.start <= 20 && status.count * page.count -page.start >= -10}">
                 <li <c:if test="${status.index * page.count == page.start}">class="disabled"</c:if>>
-                    <a href="?page.start=${status.index * page.count}${page.param}" <c:if test="${status.index * page.count == page.start}">class="current" </c:if>>
-                        ${status.count}
+                    <a href="?page.start=${status.index * page.count}${page.param}"
+                       <c:if test="${status.index * page.count == page.start}">class="current" </c:if>>
+                            ${status.count}
                     </a>
                 </li>
             </c:if>
