@@ -10,13 +10,13 @@ public class DBUtil {
     static String encoding = "UTF-8";
 
     /** 数据库名称 */
-    static String database = "tmall_faker";
+    static String database = "tmall";
 
     /** 登录用户名 */
     static String loginName = "root";
 
     /** 登录密码 */
-    static String password = "hryg.123";
+    static String password = "admin";
 
     static{
         try {
