@@ -16,7 +16,7 @@ public class DBUtil {
     static String loginName = "root";
 
     /** 登录密码 */
-    static String password = "admin";
+    static String password = "hryg.123";
 
     static{
         try {
