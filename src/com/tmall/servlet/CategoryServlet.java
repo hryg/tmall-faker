@@ -83,7 +83,7 @@ public class CategoryServlet extends BaseBackServlet {
                 try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
                     byte[] bytes = new byte[1024 * 1024];
                     int length = 0;
-                    while (-1 != (length = inputStream.read())) {
+                    while (-1 != (length = inputStream.read(bytes))) {
                         fileOutputStream.write(bytes, 0, length);
                     }
                     fileOutputStream.flush();
