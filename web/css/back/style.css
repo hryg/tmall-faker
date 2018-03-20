@@ -37,7 +37,7 @@ div.listDataTableDiv{
 	min-height:220px;
 }
 div.footer{
-	margin:20px;
+	margin:20px auto;
 }
 div.editPVDiv{
 	width:800px;
