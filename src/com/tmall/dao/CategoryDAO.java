@@ -47,14 +47,14 @@ public class CategoryDAO {
         }
     }
 
-    public void update(Category bean) {
+    public void update(Category category) {
         String sql = "update category set name = ? where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, bean.getName());
-            statement.setInt(1, bean.getId());
+            statement.setString(1, category.getName());
+            statement.setInt(1, category.getId());
             statement.execute();
 
         } catch (SQLException e) {

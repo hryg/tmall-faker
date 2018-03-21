@@ -43,7 +43,7 @@
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">
-                            <input type="hidden" name="id" value="${c.id}">
+                            <input type="hidden" name="id" value="${category.id}">
                             <button type="submit" class="btn btn-success">提 交</button>
                         </td>
                     </tr>
