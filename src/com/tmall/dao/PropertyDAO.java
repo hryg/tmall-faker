@@ -111,30 +111,28 @@ public class PropertyDAO {
         return property;
     }
 
-    public List<Property> list() {
-        return list(0, Short.MAX_VALUE);
+    public List<Property> list(int cid) {
+        return list(cid, 0, Short.MAX_VALUE);
     }
 
-    public List<Property> list(int start, int count) {
+    public List<Property> list(int cid, int start, int count) {
         List<Property> properties = new ArrayList<Property>();
-        String sql = "select * from property order by id desc limit ?, ?";
+        String sql = "select * from property where cid = ? order by id desc limit ?, ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, start);
-            statement.setInt(2, count);
+            statement.setInt(1, cid);
+            statement.setInt(2, start);
+            statement.setInt(3, count);
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Property property = new Property();
                 property.setId(resultSet.getInt("id"));
                 property.setName(resultSet.getString("name"));
-
-                int cid = resultSet.getInt("cid");
                 Category category = new CategoryDAO().get(cid);
                 property.setCategory(category);
-
                 properties.add(property);
             }
 
