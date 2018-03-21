@@ -54,7 +54,7 @@ public class CategoryDAO {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, category.getName());
-            statement.setInt(1, category.getId());
+            statement.setInt(2, category.getId());
             statement.execute();
 
         } catch (SQLException e) {
