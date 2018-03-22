@@ -48,4 +48,5 @@
         </div>
     </div>
 </div>
-</html>
+
+<%@ include file="../include/admin/adminFooter.jsp" %>
