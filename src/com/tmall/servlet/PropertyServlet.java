@@ -50,7 +50,7 @@ public class PropertyServlet extends BaseBackServlet {
         property.setName(name);
         property.setCategory(category);
         propertyDAO.update(property);
-        return "admin/listProperty.jsp";
+        return "@admin_property_list?cid=" + property.getCategory().getId();
     }
 
     @Override
