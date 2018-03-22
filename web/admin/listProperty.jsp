@@ -42,17 +42,13 @@
             <c:forEach items="${properties}" var="property">
                 <tr>
                     <td>${property.id}</td>
-                    <td><${property.name}</td>
+                    <td>${property.name}</td>
                     <td>
-                        <a href="admin_property_?cid=${c.id}.jpg"><span
-                                class="glyphicon glyphicon-shopping-cart"></span></a>
-                    </td>
-                    <td>
-                        <a href="admin_category_edit?id=${c.id}"><span
+                        <a href="admin_property_edit?id=${property.id}"><span
                                 class="glyphicon glyphicon-edit"></span></a>
                     </td>
                     <td>
-                        <a deleteLink="true" href="admin_category_delete?id=${c.id}"><span
+                        <a deleteLink="true" href="admin_property_delete?id=${property.id}"><span
                                 class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -66,20 +62,17 @@
     </div>
 
     <div class="panel panel-warning addDiv">
-        <div class="pannel-heading">新增分类</div>
+        <div class="pannel-heading">新增属性</div>
         <div class="panel-body">
-            <form method="post" id="addForm" action="admin_category_add" enctype="multipart/form-data">
+            <form method="post" id="addForm" action="admin_property_add">
                 <table class="addTable">
                     <tr>
-                        <td>分类名称</td>
+                        <td>属性名称</td>
                         <td><input id="name" name="name" type="text" class="form-control"></td>
-                    </tr>
-                    <tr>
-                        <td>分类图片</td>
-                        <td><input id="categoryPic" name="filepath" accept="image/*" type="file"></td>
                     </tr>
                     <tr class="submitTR">
                         <td colspan="2" align="center">
+                            <input id="cid" name="cid" type="hidden" value="${category.id}" />
                             <button type="submit" class="btn btn-success">提 交</button>
                         </td>
                     </tr>

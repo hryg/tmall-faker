@@ -35,7 +35,7 @@ public class PropertyDAO {
     }
 
     public void add(Property property) {
-        String sql = "insert to property values(null, ?, ?)";
+        String sql = "insert into property values(null, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -71,7 +71,7 @@ public class PropertyDAO {
     }
 
     public void delete(int id) {
-        String sql = "delete * from property where id = ?";
+        String sql = "delete from property where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

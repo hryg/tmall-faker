@@ -55,7 +55,7 @@ public class PropertyServlet extends BaseBackServlet {
 
     @Override
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
-        int cid = Integer.parseInt("cid");
+        int cid = Integer.parseInt(request.getParameter("cid"));
         Category category = categoryDAO.get(cid);
         List<Property> properties = propertyDAO.list(cid, page.getStart(), page.getCount());
         int total = propertyDAO.getTotal(cid);
