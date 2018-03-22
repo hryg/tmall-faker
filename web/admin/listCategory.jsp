@@ -35,6 +35,7 @@
                 <th>图片</th>
                 <th>分类名称</th>
                 <th>属性管理</th>
+                <th>产品管理</th>
                 <th>编辑</th>
                 <th>删除</th>
             </tr>
@@ -49,10 +50,10 @@
                         <a href="admin_property_list?cid=${category.id}"><span
                                 class="glyphicon glyphicon-th-list"></span></a>
                     </td>
-                    <%--<td>--%>
-                        <%--<a href="admin_product_list?cid=${c.id}.jpg"><span--%>
-                                <%--class="glyphicon glyphicon-shopping-cart"></span></a>--%>
-                    <%--</td>--%>
+                    <td>
+                        <a href="admin_product_list?cid=${category.id}"><span
+                                class="glyphicon glyphicon-shopping-cart"></span></a>
+                    </td>
                     <td>
                         <a href="admin_category_edit?id=${category.id}"><span
                                 class="glyphicon glyphicon-edit"></span></a>

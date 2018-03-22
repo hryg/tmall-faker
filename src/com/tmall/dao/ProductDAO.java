@@ -249,7 +249,7 @@ public class ProductDAO {
             return products;
         }
 
-        String sql = "select * from Product where name like ? limit ?,? ";
+        String sql = "select * from product where name like ? limit ?,? ";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
