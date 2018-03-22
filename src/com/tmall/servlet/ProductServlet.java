@@ -1,6 +1,8 @@
 package com.tmall.servlet;
 
+import com.tmall.bean.Category;
 import com.tmall.bean.Product;
+import com.tmall.dao.CategoryDAO;
 import com.tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,10 +33,12 @@ public class ProductServlet extends BaseBackServlet {
     @Override
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
         int cid = Integer.parseInt(request.getParameter("cid"));
+        Category category = categoryDAO.get(cid);
         List<Product> products = productDAO.list(cid, page.getStart(), page.getCount());
         page.setTotal(productDAO.getTotal(cid));
         page.setParam("&cid=" + cid);
         request.setAttribute("cid", cid);
+        request.setAttribute("category", category);
         request.setAttribute("products", products);
         request.setAttribute("page", page);
         return "admin/listProduct.jsp";

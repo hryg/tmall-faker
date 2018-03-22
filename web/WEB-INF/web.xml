@@ -14,14 +14,24 @@
         <servlet-class>com.tmall.servlet.PropertyServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>com.tmall.servlet.ProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/categoryServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>PropertyServlet</servlet-name>
         <url-pattern>/propertyServlet</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>CategoryServlet</servlet-name>
-        <url-pattern>/categoryServlet</url-pattern>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/productServlet</url-pattern>
     </servlet-mapping>
 
     <filter>
