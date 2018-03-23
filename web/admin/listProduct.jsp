@@ -47,7 +47,7 @@
                     <td>${product.id}</td>
                     <td>${product.name}</td>
                     <td>${product.subTitle}</td>
-                    <td>${product.orignalPrice}</td>
+                    <td>${product.originalPrice}</td>
                     <td>${product.promotePrice}</td>
                     <td>${product.stock}</td>
                     <td>
@@ -83,7 +83,7 @@
                     </tr>
                     <tr>
                         <td>原价格</td>
-                        <td><input id="orignalPrice" name="orignalPrice" type="text" class="form-control"></td>
+                        <td><input id="originalPrice" name="originalPrice" type="text" class="form-control"></td>
                     </tr>
                     <tr>
                         <td>优惠价格</td>

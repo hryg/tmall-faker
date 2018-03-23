@@ -7,12 +7,29 @@ import com.tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 public class ProductServlet extends BaseBackServlet {
     @Override
     public String add(HttpServletRequest request, HttpServletResponse response, Page page) {
-        return null;
+        String name = request.getParameter("name");
+        String subTitle = request.getParameter("subTitle");
+        Float originalPrice = Float.parseFloat(request.getParameter("originalPrice"));
+        Float promotePrice = Float.parseFloat(request.getParameter("promotePrice"));
+        int stock = Integer.parseInt(request.getParameter("stock"));
+        int cid = Integer.parseInt(request.getParameter("cid"));
+
+        Product product = new Product();
+        product.setName(name);
+        product.setSubTitle(subTitle);
+        product.setOriginalPrice(originalPrice);
+        product.setPromotePrice(promotePrice);
+        product.setStock(stock);
+        product.setCategory(categoryDAO.get(cid));
+        product.setCreateDate(new Date(System.currentTimeMillis()));
+        productDAO.add(product);
+        return "@admin_product_list?cid=" + cid;
     }
 
     @Override

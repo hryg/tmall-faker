@@ -37,7 +37,7 @@ public class ProductDAO {
 
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getSubTitle());
-            preparedStatement.setFloat(3, product.getOrignalPrice());
+            preparedStatement.setFloat(3, product.getOriginalPrice());
             preparedStatement.setFloat(4, product.getPromotePrice());
             preparedStatement.setInt(5, product.getStock());
             preparedStatement.setInt(6, product.getCategory().getId());
@@ -63,7 +63,7 @@ public class ProductDAO {
 
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getSubTitle());
-            preparedStatement.setFloat(3, product.getOrignalPrice());
+            preparedStatement.setFloat(3, product.getOriginalPrice());
             preparedStatement.setFloat(4, product.getPromotePrice());
             preparedStatement.setInt(5, product.getStock());
             preparedStatement.setInt(6, product.getCategory().getId());
@@ -105,7 +105,7 @@ public class ProductDAO {
                 product.setId(id);
                 product.setName(resultSet.getString("name"));
                 product.setSubTitle(resultSet.getString("subTitle"));
-                product.setOrignalPrice(resultSet.getFloat("orignalPrice"));
+                product.setOriginalPrice(resultSet.getFloat("orignalPrice"));
                 product.setPromotePrice(resultSet.getFloat("promotePrice"));
                 product.setStock(resultSet.getInt("stock"));
                 product.setCategory(new CategoryDAO().get(resultSet.getInt("cid")));
@@ -140,7 +140,7 @@ public class ProductDAO {
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("name"));
                 product.setSubTitle(resultSet.getString("subTitle"));
-                product.setOrignalPrice(resultSet.getFloat("orignalPrice"));
+                product.setOriginalPrice(resultSet.getFloat("orignalPrice"));
                 product.setPromotePrice(resultSet.getFloat("promotePrice"));
                 product.setStock(resultSet.getInt("stock"));
                 product.setCategory(new CategoryDAO().get(resultSet.getInt("cid")));
@@ -178,7 +178,7 @@ public class ProductDAO {
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("name"));
                 product.setSubTitle(resultSet.getString("subTitle"));
-                product.setOrignalPrice(resultSet.getFloat("orignalPrice"));
+                product.setOriginalPrice(resultSet.getFloat("orignalPrice"));
                 product.setPromotePrice(resultSet.getFloat("promotePrice"));
                 product.setStock(resultSet.getInt("stock"));
                 product.setCategory(new CategoryDAO().get(resultSet.getInt("cid")));
@@ -264,7 +264,7 @@ public class ProductDAO {
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("name"));
                 product.setSubTitle(rs.getString("subTitle"));
-                product.setOrignalPrice(rs.getFloat("orignalPrice"));
+                product.setOriginalPrice(rs.getFloat("orignalPrice"));
                 product.setPromotePrice(rs.getFloat("promotePrice"));
                 product.setStock(rs.getInt("stock"));
                 product.setCategory(new CategoryDAO().get(rs.getInt("cid")));
