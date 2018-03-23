@@ -55,7 +55,7 @@
                                 class="glyphicon glyphicon-edit"></span></a>
                     </td>
                     <td>
-                        <a deleteLink="true" href="admin_product_delete?id=${product.id}"><span
+                        <a deleteLink="true" href="admin_product_delete?id=${product.id}&cid=${category.id}"><span
                                 class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>

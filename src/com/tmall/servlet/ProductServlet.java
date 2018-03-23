@@ -34,7 +34,10 @@ public class ProductServlet extends BaseBackServlet {
 
     @Override
     public String delete(HttpServletRequest request, HttpServletResponse response, Page page) {
-        return null;
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        productDAO.delete(id);
+        return "@admin_product_list?cid=" + cid;
     }
 
     @Override
