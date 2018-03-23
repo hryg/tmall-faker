@@ -19,6 +19,11 @@
         <servlet-class>com.tmall.servlet.ProductServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ProductImageServlet</servlet-name>
+        <servlet-class>com.tmall.servlet.ProductImageServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
         <url-pattern>/categoryServlet</url-pattern>
@@ -32,6 +37,11 @@
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>
         <url-pattern>/productServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProductImageServlet</servlet-name>
+        <url-pattern>/productImageServlet</url-pattern>
     </servlet-mapping>
 
     <filter>
