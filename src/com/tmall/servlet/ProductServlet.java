@@ -42,12 +42,30 @@ public class ProductServlet extends BaseBackServlet {
 
     @Override
     public String edit(HttpServletRequest request, HttpServletResponse response, Page page) {
-        return null;
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productDAO.get(id);
+        request.setAttribute("product", product);
+        return "admin/editProduct.jsp";
     }
 
     @Override
     public String update(HttpServletRequest request, HttpServletResponse response, Page page) {
-        return null;
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String subTitle = request.getParameter("subTitle");
+        Float originalPrice = Float.parseFloat(request.getParameter("originalPrice"));
+        Float promotePrice = Float.parseFloat(request.getParameter("promotePrice"));
+        int stock = Integer.parseInt(request.getParameter("stock"));
+        int cid = Integer.parseInt(request.getParameter("cid"));
+
+        Product product = productDAO.get(id);
+        product.setName(name);
+        product.setSubTitle(subTitle);
+        product.setOriginalPrice(originalPrice);
+        product.setPromotePrice(promotePrice);
+        product.setStock(stock);
+        productDAO.update(product);
+        return "@admin_product_list?cid=" + cid;
     }
 
     @Override
