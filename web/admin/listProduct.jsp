@@ -32,11 +32,13 @@
             <thead>
             <tr class="success">
                 <th>ID</th>
+                <th>图片</th>
                 <th>产品名称</th>
                 <th>产品小标题</th>
                 <th>原价格</th>
                 <th>优惠价格</th>
                 <th>库存数量</th>
+                <th>图片管理</th>
                 <th>编辑</th>
                 <th>删除</th>
             </tr>
@@ -45,11 +47,20 @@
             <c:forEach items="${products}" var="product">
                 <tr>
                     <td>${product.id}</td>
+                    <td>
+                        <c:if test="${!empty product.firstProductImage}">
+                            <img width="40px" src="img/productSingle/${p.firstProductImage.id}.jpg">
+                        </c:if>
+                    </td>
                     <td>${product.name}</td>
                     <td>${product.subTitle}</td>
                     <td>${product.originalPrice}</td>
                     <td>${product.promotePrice}</td>
                     <td>${product.stock}</td>
+                    <td>
+                        <a href="admin_productImage_list?id=${product.id}"><span
+                                class="glyphicon glyphicon-picture"></span></a>
+                    </td>
                     <td>
                         <a href="admin_product_edit?id=${product.id}"><span
                                 class="glyphicon glyphicon-edit"></span></a>
