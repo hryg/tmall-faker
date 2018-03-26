@@ -6,11 +6,29 @@ import com.tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductImageServlet extends BaseBackServlet {
     @Override
     public String add(HttpServletRequest request, HttpServletResponse response, Page page) {
+        InputStream inputStream = null;
+        Map<String, String> params = new HashMap<String, String>();
+        inputStream = parseUpload(request, params);
+
+        String type = params.get("type");
+        int pid = Integer.parseInt(params.get("pid"));
+        Product product = productDAO.get(pid);
+
+        ProductImage productImage = new ProductImage();
+        productImage.setType(type);
+        productImage.setProduct(product);
+        productImageDAO.add(productImage);
+
+        String fileName = productImage.getId() + ".jpg";
+        
         return null;
     }
 
