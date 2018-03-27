@@ -148,4 +148,12 @@ public class Order {
     public void setTotal(float total) {
         this.total = total;
     }
+
+    public String getStatusDesc() {
+        String desc = "未知";
+        switch (status) {
+
+        }
+        return desc;
+    }
 }
