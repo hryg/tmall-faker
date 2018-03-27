@@ -69,12 +69,15 @@ public class ProductImageServlet extends BaseBackServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "@admin_productImage_list?id=" + product.getId();
+        return "@admin_productImage_list?pid=" + product.getId();
     }
 
     @Override
     public String delete(HttpServletRequest request, HttpServletResponse response, Page page) {
-        return null;
+        int id = Integer.parseInt(request.getParameter("id"));
+        int pid = productImageDAO.get(id).getProduct().getId();
+        productImageDAO.delete(id);
+        return "@admin_productImage_list?pid=" + pid;
     }
 
     @Override
@@ -89,7 +92,7 @@ public class ProductImageServlet extends BaseBackServlet {
 
     @Override
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
-        int pid = Integer.parseInt(request.getParameter("id"));
+        int pid = Integer.parseInt(request.getParameter("pid"));
         Product product = productDAO.get(pid);
         List<ProductImage> pisSingle = productImageDAO.list(product, "type_single", page.getStart(), page.getCount());
         List<ProductImage> pisDetail = productImageDAO.list(product, "type_detail", page.getStart(), page.getCount());

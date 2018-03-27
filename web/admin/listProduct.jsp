@@ -58,7 +58,7 @@
                     <td>${product.promotePrice}</td>
                     <td>${product.stock}</td>
                     <td>
-                        <a href="admin_productImage_list?id=${product.id}"><span
+                        <a href="admin_productImage_list?pid=${product.id}"><span
                                 class="glyphicon glyphicon-picture"></span></a>
                     </td>
                     <td>

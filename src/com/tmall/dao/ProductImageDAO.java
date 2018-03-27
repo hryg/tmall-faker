@@ -58,7 +58,7 @@ public class ProductImageDAO {
     }
 
     public void delete(int id) {
-        String sql = "delete * from productimage where id = ?";
+        String sql = "delete from productimage where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
