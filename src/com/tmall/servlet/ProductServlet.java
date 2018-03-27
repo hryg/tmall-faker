@@ -2,6 +2,8 @@ package com.tmall.servlet;
 
 import com.tmall.bean.Category;
 import com.tmall.bean.Product;
+import com.tmall.bean.Property;
+import com.tmall.bean.PropertyValue;
 import com.tmall.dao.CategoryDAO;
 import com.tmall.util.Page;
 
@@ -48,6 +50,17 @@ public class ProductServlet extends BaseBackServlet {
         return "admin/editProduct.jsp";
     }
 
+    public String editPropertyValue(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        Product product = productDAO.get(pid);
+        request.setAttribute("product", product);
+
+        propertyValueDAO.init(product);
+        List<PropertyValue> propertyValues = propertyValueDAO.list(pid);
+        request.setAttribute("propertyValues", propertyValues);
+        return "admin/editProductValue.jsp";
+    }
+
     @Override
     public String update(HttpServletRequest request, HttpServletResponse response, Page page) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -66,6 +79,16 @@ public class ProductServlet extends BaseBackServlet {
         product.setStock(stock);
         productDAO.update(product);
         return "@admin_product_list?cid=" + cid;
+    }
+
+    public String updatePropertyValue(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int pvid = Integer.parseInt(request.getParameter("pvid"));
+        String value = request.getParameter("value");
+
+        PropertyValue propertyValue = propertyValueDAO.get(pvid);
+        propertyValue.setValue(value);
+        propertyValueDAO.update(propertyValue);
+        return "%success";
     }
 
     @Override

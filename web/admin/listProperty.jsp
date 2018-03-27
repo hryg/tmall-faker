@@ -39,16 +39,16 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${properties}" var="property">
+            <c:forEach items="${properties}" var="propertyValue">
                 <tr>
-                    <td>${property.id}</td>
-                    <td>${property.name}</td>
+                    <td>${propertyValue.id}</td>
+                    <td>${propertyValue.name}</td>
                     <td>
-                        <a href="admin_property_edit?id=${property.id}"><span
+                        <a href="admin_property_edit?id=${propertyValue.id}"><span
                                 class="glyphicon glyphicon-edit"></span></a>
                     </td>
                     <td>
-                        <a deleteLink="true" href="admin_property_delete?id=${property.id}"><span
+                        <a deleteLink="true" href="admin_property_delete?id=${propertyValue.id}"><span
                                 class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>

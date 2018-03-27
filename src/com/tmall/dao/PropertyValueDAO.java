@@ -1,5 +1,7 @@
 package com.tmall.dao;
 
+import com.tmall.bean.Product;
+import com.tmall.bean.Property;
 import com.tmall.bean.PropertyValue;
 import com.tmall.util.DBUtil;
 
@@ -105,6 +107,35 @@ public class PropertyValueDAO {
         return propertyValue;
     }
 
+    public PropertyValue get(int ptid, int pid ) {
+        PropertyValue bean = null;
+
+        try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement();) {
+
+            String sql = "select * from propertyvalue where ptid = " + ptid + " and pid = " + pid;
+
+            ResultSet rs = s.executeQuery(sql);
+
+            if (rs.next()) {
+                bean= new PropertyValue();
+                int id = rs.getInt("id");
+
+                String value = rs.getString("value");
+
+                Product product = new ProductDAO().get(pid);
+                Property property = new PropertyDAO().get(ptid);
+                bean.setProduct(product);
+                bean.setProperty(property);
+                bean.setValue(value);
+                bean.setId(id);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
     public List<PropertyValue> list() {
         return list(0, Short.MAX_VALUE);
     }
@@ -135,6 +166,52 @@ public class PropertyValueDAO {
         }
 
         return propertyValues;
+    }
+
+    public void init(Product product) {
+        List<Property> properties = new PropertyDAO().list(product.getCategory().getId());
+        for (Property property : properties) {
+            PropertyValue propertyValue = get(property.getId(), product.getId());
+            if (null == propertyValue) {
+                propertyValue = new PropertyValue();
+                propertyValue.setProduct(product);
+                propertyValue.setProperty(property);
+                this.add(propertyValue);
+            }
+        }
+    }
+
+    public List<PropertyValue> list(int pid) {
+        List<PropertyValue> beans = new ArrayList<PropertyValue>();
+
+        String sql = "select * from propertyvalue where pid = ? order by ptid desc";
+
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+
+            ps.setInt(1, pid);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                PropertyValue bean = new PropertyValue();
+                int id = rs.getInt(1);
+
+                int ptid = rs.getInt("ptid");
+                String value = rs.getString("value");
+
+                Product product = new ProductDAO().get(pid);
+                Property property = new PropertyDAO().get(ptid);
+                bean.setProduct(product);
+                bean.setProperty(property);
+                bean.setValue(value);
+                bean.setId(id);
+                beans.add(bean);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return beans;
     }
 
 }
