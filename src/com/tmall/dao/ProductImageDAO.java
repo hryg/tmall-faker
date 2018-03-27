@@ -34,7 +34,7 @@ public class ProductImageDAO {
     }
 
     public void add(ProductImage productImage) {
-        String sql = "insert to productimage values(null, ?, ?)";
+        String sql = "insert into productimage values(null, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
