@@ -1,5 +1,7 @@
 package com.tmall.bean;
 
+import com.tmall.dao.OrderDAO;
+
 import java.util.Date;
 import java.util.List;
 
@@ -152,7 +154,26 @@ public class Order {
     public String getStatusDesc() {
         String desc = "未知";
         switch (status) {
-
+            case OrderDAO.WAIT_PAY:
+                desc = "待付款";
+                break;
+            case OrderDAO.WAIT_DELIVERY:
+                desc = "待发货";
+                break;
+            case OrderDAO.WAIT_CONFIRM:
+                desc = "待收货";
+                break;
+            case OrderDAO.WAIT_REVIEW:
+                desc = "待评价";
+                break;
+            case OrderDAO.FINISH:
+                desc = "结束";
+                break;
+            case OrderDAO.DELETE:
+                desc = "删除";
+                break;
+            default:
+                desc = "未知";
         }
         return desc;
     }

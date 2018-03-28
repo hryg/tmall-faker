@@ -118,6 +118,7 @@ public class OrderDAO {
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
+                order = new Order();
                 order.setOrderCode(resultSet.getString("orderCode"));
                 order.setAddress(resultSet.getString("address"));
                 order.setPost(resultSet.getString("post"));
@@ -146,7 +147,7 @@ public class OrderDAO {
 
     public List<Order> list(int start, int count) {
         List<Order> orders = new ArrayList<Order>();
-        String sql = "select * from propertyvalue order by id desc limit ?, ?";
+        String sql = "select * from order_ order by id desc limit ?, ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

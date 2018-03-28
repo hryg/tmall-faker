@@ -10,11 +10,9 @@
 
 <script>
     $(function () {
-        $("#editForm").submit(function () {
-            if (!checkEmpty("name", "分类名称")) {
-                return false;
-            }
-            return true;
+        $("button.orderPageCheckOrderItems").click(function () {
+            var oid = $(this).attr("oid");
+            $("tr.orderPageOrderItemTR[oid=" + oid + "]").toggle();
         });
     });
 </script>
@@ -32,18 +30,59 @@
                 <th>ID</th>
                 <th>状态</th>
                 <th>商品数量</th>
-                <th>用户名称</th>
-                <th>用户名称</th>
-                <th>用户名称</th>
-                <th>用户名称</th>
-                <th>用户名称</th>
+                <th>买家名称</th>
+                <th>创建时间</th>
+                <th>支付时间</th>
+                <th>发货时间</th>
+                <th>确认收货时间</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${users}" var="user">
+            <c:forEach items="${orders}" var="order">
                 <tr>
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
+                    <td>${order.id}</td>
+                    <td>${order.statusDesc}</td>
+                    <td>${order.totalNumber}</td>
+                    <td>${order.user.name}</td>
+                    <td><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${order.payDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${order.deliveryDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${order.confirmDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                    <td>
+                        <button oid="${order.id}" class="orderPageCheckOrderItems btn btn-primary btn-xs">查看详情</button>
+                        <c:if test="${order.status=='waitDelivery'}">
+                            <a href="admin_order_delivery?id=${order.id}">
+                                <button class="btn btn-primary btn-xs">发货</button>
+                            </a>
+                        </c:if>
+                    </td>
+                </tr>
+                <tr class="orderPageOrderItemTR" oid="${order.id}">
+                    <td colspan="10" align="center">
+                        <div class="orderPageOrderItem">
+                            <table width="80%" align="center" class="orderPageOrderItemTabel">
+                                <c:forEach items="${order.orderItems}" var="orderItem">
+                                    <tr>
+                                        <td align="left">
+                                            <img width="40px" height="40px" src="img/productSingle/${orderItem.product.firstProductImage.id}.jpg">
+                                        </td>
+                                        <td>
+                                            <a href="foreproduct?pid=${orderItem.product.id}">
+                                                <span>${orderItem.product.name}</span>
+                                            </a>
+                                        </td>
+                                        <td align="right">
+                                            <span class="text-muted">${orderItem.number}个</span>
+                                        </td>
+                                        <td align="right">
+                                            <span class="text-muted">单价：￥${orderItem.product.promotePrice}</span>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
