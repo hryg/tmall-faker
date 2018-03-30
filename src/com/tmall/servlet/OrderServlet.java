@@ -1,10 +1,12 @@
 package com.tmall.servlet;
 
 import com.tmall.bean.Order;
+import com.tmall.dao.OrderDAO;
 import com.tmall.util.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 public class OrderServlet extends BaseBackServlet {
@@ -37,5 +39,14 @@ public class OrderServlet extends BaseBackServlet {
         request.setAttribute("orders", orders);
         request.setAttribute("page", page);
         return "admin/listOrder.jsp";
+    }
+
+    public String delivery(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Order order = orderDAO.get(id);
+        order.setDeliveryDate(new Date());
+        order.setStatus(OrderDAO.WAIT_CONFIRM);
+        orderDAO.update(order);
+        return "@admin_order_list";
     }
 }
