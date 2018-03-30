@@ -111,6 +111,7 @@ public class ProductDAO {
                 product.setStock(resultSet.getInt("stock"));
                 product.setCategory(new CategoryDAO().get(resultSet.getInt("cid")));
                 product.setCreateDate(DateUtil.t2d(resultSet.getTimestamp("createDate")));
+                setFirstProductImage(product);
             }
 
         } catch (SQLException e) {
@@ -184,7 +185,7 @@ public class ProductDAO {
                 product.setStock(resultSet.getInt("stock"));
                 product.setCategory(new CategoryDAO().get(resultSet.getInt("cid")));
                 product.setCreateDate(DateUtil.t2d(resultSet.getTimestamp("createDate")));
-
+                setFirstProductImage(product);
                 products.add(product);
             }
 
@@ -271,7 +272,6 @@ public class ProductDAO {
                 product.setCategory(new CategoryDAO().get(rs.getInt("cid")));
                 product.setCreateDate(DateUtil.t2d(rs.getTimestamp("createDate")));
                 setFirstProductImage(product);
-
                 products.add(product);
             }
         } catch (SQLException e) {

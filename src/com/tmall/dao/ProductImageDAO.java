@@ -118,7 +118,7 @@ public class ProductImageDAO {
                 ProductImage productImage = new ProductImage();
                 productImage.setId(resultSet.getInt("id"));
                 productImage.setType(resultSet.getString("type"));
-                productImage.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
+                productImage.setProduct(product);
                 productImages.add(productImage);
             }
 
