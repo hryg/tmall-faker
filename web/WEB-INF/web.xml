@@ -30,6 +30,11 @@
     </servlet>
 
     <servlet>
+        <servlet-name>ForeServlet</servlet-name>
+        <servlet-class>com.tmall.servlet.ForeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>OrderServlet</servlet-name>
         <servlet-class>com.tmall.servlet.OrderServlet</servlet-class>
     </servlet>
@@ -62,6 +67,11 @@
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ForeServlet</servlet-name>
+        <url-pattern>/foreServlet</url-pattern>
     </servlet-mapping>
 
     <filter>
