@@ -33,7 +33,6 @@ public class BaseForeServlet extends HttpServlet {
                 start = Integer.parseInt(request.getParameter("page.start"));
                 count = Integer.parseInt(request.getParameter("page.count"));
             } catch (Exception e) {
-                e.printStackTrace();
             }
 
             Page page = new Page(start, count);
