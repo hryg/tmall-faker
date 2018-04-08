@@ -27,5 +27,7 @@
     <orderEntry type="library" name="mysql-connector-java-5.0.8-bin" level="project" />
     <orderEntry type="library" name="jstl" level="project" />
     <orderEntry type="library" name="standard" level="project" />
+    <orderEntry type="library" name="spring-core-3.2.0.M1" level="project" />
+    <orderEntry type="library" name="spring-web-3.2.0.M1" level="project" />
   </component>
 </module>

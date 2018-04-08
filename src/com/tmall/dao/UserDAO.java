@@ -181,4 +181,9 @@ public class UserDAO {
         return users;
     }
 
+    public boolean isExisted(String name) {
+        User user = get(name);
+        return user != null;
+    }
+
 }
