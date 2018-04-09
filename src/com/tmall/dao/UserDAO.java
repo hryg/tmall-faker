@@ -128,7 +128,7 @@ public class UserDAO {
 
     public User get(String name, String password) {
         User user = null;
-        String sql = "select * from user where name = ?, password = ?";
+        String sql = "select * from user where name = ? and password = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
