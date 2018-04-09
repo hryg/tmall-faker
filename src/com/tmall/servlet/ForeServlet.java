@@ -1,7 +1,7 @@
 package com.tmall.servlet;
 
-        import com.tmall.bean.Category;
-        import com.tmall.bean.User;
+        import com.tmall.bean.*;
+        import com.tmall.dao.ProductImageDAO;
         import com.tmall.util.Page;
         import org.springframework.web.util.HtmlUtils;
 
@@ -55,5 +55,24 @@ public class ForeServlet extends BaseForeServlet {
     public String logout(HttpServletRequest request, HttpServletResponse response, Page page) {
         request.getSession().removeAttribute("user");
         return "@forehome";
+    }
+
+    public String product(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        Product product = productDAO.get(pid);
+
+        List<ProductImage> productSingleImages = productImageDAO.list(product, ProductImageDAO.TYPE_SINGLE);
+        List<ProductImage> productDetailImages = productImageDAO.list(product, ProductImageDAO.TYPE_DETAIL);
+        product.setProductSingleImages(productSingleImages);
+        product.setProductDetailImages(productDetailImages);
+
+        List<PropertyValue> propertyValues = propertyValueDAO.list(pid);
+        List<Review> reviews = reviewDAO.list(pid);
+        productDAO.setSaleAndReviewNumber(product);
+
+        request.setAttribute("product", product);
+        request.setAttribute("propretyValues", propertyValues);
+        request.setAttribute("reviews", reviews);
+        return "product.jsp";
     }
 }
