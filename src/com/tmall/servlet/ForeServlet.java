@@ -7,6 +7,7 @@ package com.tmall.servlet;
 
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
+        import java.util.Collections;
         import java.util.List;
 
 public class ForeServlet extends BaseForeServlet {
@@ -96,5 +97,36 @@ public class ForeServlet extends BaseForeServlet {
 
         request.getSession().setAttribute("user", user);
         return "%success";
+    }
+
+    public String category(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        Category category = categoryDAO.get(cid);
+        productDAO.fill(category);
+        productDAO.setSaleAndReviewNumber(category.getProducts());
+        String sort = request.getParameter("sort");
+        if (null != sort) {
+            switch (sort) {
+                case "review":
+                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getReviewCount()-p1.getReviewCount());
+                    break;
+                case "date":
+                    Collections.sort(category.getProducts(), (p1, p2) -> p1.getCreateDate().compareTo(p2.getCreateDate()));
+                    break;
+                case "saleCount":
+                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getSaleCount()-p1.getSaleCount());
+                    break;
+                case "price":
+                    Collections.sort(category.getProducts(), (p1, p2) -> (int) (p1.getPromotePrice()-p2.getPromotePrice()));
+                    break;
+                case "all":
+                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getReviewCount()*p2.getSaleCount()-p1.getReviewCount()*p1.getSaleCount());
+                    break;
+                default:
+                    break;
+            }
+        }
+        request.setAttribute("category", category);
+        return "category.jsp";
     }
 }
