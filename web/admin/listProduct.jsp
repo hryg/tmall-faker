@@ -50,7 +50,7 @@
                     <td>${product.id}</td>
                     <td>
                         <c:if test="${!empty product.firstProductImage}">
-                            <img width="40px" src="img/productSingle/${p.firstProductImage.id}.jpg">
+                            <img width="40px" src="img/productSingle/${product.firstProductImage.id}.jpg">
                         </c:if>
                     </td>
                     <td>${product.name}</td>
