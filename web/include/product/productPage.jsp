@@ -13,4 +13,6 @@
 
 <div class="productPageDiv">
     <%@ include file="imgAndInfo.jsp"%>
+    <%@ include file="productReview.jsp"%>
+    <%@ include file="productDetail.jsp"%>
 </div>

@@ -71,7 +71,7 @@ public class ForeServlet extends BaseForeServlet {
         productDAO.setSaleAndReviewNumber(product);
 
         request.setAttribute("product", product);
-        request.setAttribute("propretyValues", propertyValues);
+        request.setAttribute("propertyValues", propertyValues);
         request.setAttribute("reviews", reviews);
         return "product.jsp";
     }
