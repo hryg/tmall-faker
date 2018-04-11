@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" pageEncoding="UTF-8" %>
 
 <div>
-    <a href="${contextPath}">
+    <a href="/forehome">
         <img id="simpleLogo" class="simpleLogo" src="img/site/simpleLogo.png">
     </a>
 
