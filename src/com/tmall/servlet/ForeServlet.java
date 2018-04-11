@@ -129,4 +129,12 @@ public class ForeServlet extends BaseForeServlet {
         request.setAttribute("category", category);
         return "category.jsp";
     }
+
+    public String search(HttpServletRequest request, HttpServletResponse response, Page page) {
+        String keyword = request.getParameter("keyword");
+        List<Product> products = productDAO.search(keyword, 0, 20);
+        productDAO.setSaleAndReviewNumber(products);
+        request.setAttribute("products", products);
+        return "searchResult.jsp";
+    }
 }
