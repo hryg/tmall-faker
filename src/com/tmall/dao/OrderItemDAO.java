@@ -65,10 +65,16 @@ public class OrderItemDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, orderItem.getProduct().getId());
-            preparedStatement.setInt(2, orderItem.getOrder().getId());
             preparedStatement.setInt(3, orderItem.getUser().getId());
             preparedStatement.setInt(4, orderItem.getNumber());
             preparedStatement.setInt(5, orderItem.getId());
+
+            if (null == orderItem.getOrder()) {
+                preparedStatement.setInt(2, -1);
+            } else {
+                preparedStatement.setInt(2, orderItem.getOrder().getId());
+            }
+
             preparedStatement.execute();
 
         } catch (SQLException e) {
@@ -101,6 +107,7 @@ public class OrderItemDAO {
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
+                orderItem = new OrderItem();
                 orderItem.setId(id);
                 orderItem.setProduct(new ProductDAO().get(resultSet.getInt("pid")));
                 orderItem.setOrder(new OrderDAO().get(resultSet.getInt("oid")));

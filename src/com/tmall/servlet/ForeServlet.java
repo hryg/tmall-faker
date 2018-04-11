@@ -1,14 +1,15 @@
 package com.tmall.servlet;
 
-        import com.tmall.bean.*;
-        import com.tmall.dao.ProductImageDAO;
-        import com.tmall.util.Page;
-        import org.springframework.web.util.HtmlUtils;
+import com.tmall.bean.*;
+import com.tmall.dao.ProductImageDAO;
+import com.tmall.util.Page;
+import org.springframework.web.util.HtmlUtils;
 
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-        import java.util.Collections;
-        import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ForeServlet extends BaseForeServlet {
     public String home(HttpServletRequest request, HttpServletResponse response, Page page) {
@@ -108,19 +109,19 @@ public class ForeServlet extends BaseForeServlet {
         if (null != sort) {
             switch (sort) {
                 case "review":
-                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getReviewCount()-p1.getReviewCount());
+                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getReviewCount() - p1.getReviewCount());
                     break;
                 case "date":
                     Collections.sort(category.getProducts(), (p1, p2) -> p1.getCreateDate().compareTo(p2.getCreateDate()));
                     break;
                 case "saleCount":
-                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getSaleCount()-p1.getSaleCount());
+                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getSaleCount() - p1.getSaleCount());
                     break;
                 case "price":
-                    Collections.sort(category.getProducts(), (p1, p2) -> (int) (p1.getPromotePrice()-p2.getPromotePrice()));
+                    Collections.sort(category.getProducts(), (p1, p2) -> (int) (p1.getPromotePrice() - p2.getPromotePrice()));
                     break;
                 case "all":
-                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getReviewCount()*p2.getSaleCount()-p1.getReviewCount()*p1.getSaleCount());
+                    Collections.sort(category.getProducts(), (p1, p2) -> p2.getReviewCount() * p2.getSaleCount() - p1.getReviewCount() * p1.getSaleCount());
                     break;
                 default:
                     break;
@@ -136,5 +137,50 @@ public class ForeServlet extends BaseForeServlet {
         productDAO.setSaleAndReviewNumber(products);
         request.setAttribute("products", products);
         return "searchResult.jsp";
+    }
+
+    public String buyone(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oiid = 0;
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        int num = Integer.parseInt(request.getParameter("num"));
+        Product product = productDAO.get(pid);
+
+        User user = (User) request.getSession().getAttribute("user");
+        boolean bought = false;
+        List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem.getProduct().getId() == pid) {
+                bought = true;
+                orderItem.setNumber(orderItem.getNumber() + num);
+                orderItemDAO.update(orderItem);
+                oiid = orderItem.getId();
+            }
+        }
+        if (!bought) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setUser(user);
+            orderItem.setNumber(num);
+            orderItem.setProduct(product);
+            orderItemDAO.add(orderItem);
+            oiid = orderItem.getId();
+        }
+        return "@forebuy?oiid=" + oiid;
+    }
+
+    public String buy(HttpServletRequest request, HttpServletResponse response, Page page) {
+        String[] oiids = request.getParameterValues("oiid");
+        List<OrderItem> orderItems = new ArrayList<>();
+        float total = 0;
+
+        for (String id : oiids) {
+            int oiid = Integer.parseInt(id);
+            OrderItem orderItem = orderItemDAO.get(oiid);
+            total += orderItem.getNumber() * orderItem.getProduct().getPromotePrice();
+            orderItems.add(orderItem);
+        }
+
+        request.getSession().setAttribute("orderItems", orderItems);
+        request.setAttribute("total", total);
+        return "buy.jsp";
     }
 }
