@@ -215,9 +215,6 @@ public class ForeServlet extends BaseForeServlet {
 
     public String cart(HttpServletRequest request, HttpServletResponse response, Page page) {
         User user = (User) request.getSession().getAttribute("user");
-        if (null == user) {
-            return "login.jsp";
-        }
         List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
         request.setAttribute("orderItems", orderItems);
         return "cart.jsp";
