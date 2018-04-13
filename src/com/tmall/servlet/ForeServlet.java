@@ -154,6 +154,7 @@ public class ForeServlet extends BaseForeServlet {
                 orderItem.setNumber(orderItem.getNumber() + num);
                 orderItemDAO.update(orderItem);
                 oiid = orderItem.getId();
+                break;
             }
         }
         if (!bought) {
@@ -182,5 +183,33 @@ public class ForeServlet extends BaseForeServlet {
         request.getSession().setAttribute("orderItems", orderItems);
         request.setAttribute("total", total);
         return "buy.jsp";
+    }
+
+    public String addCart(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        int num = Integer.parseInt(request.getParameter("num"));
+        Product product = productDAO.get(pid);
+
+        User user = (User) request.getSession().getAttribute("user");
+        boolean bought = false;
+
+        List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
+        for (OrderItem orderItem: orderItems) {
+            if (orderItem.getProduct().getId() == pid) {
+                bought = true;
+                orderItem.setNumber(orderItem.getNumber() + num);
+                orderItemDAO.update(orderItem);
+                break;
+            }
+        }
+
+        if (!bought) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setUser(user);
+            orderItem.setNumber(num);
+            orderItem.setProduct(product);
+            orderItemDAO.add(orderItem);
+        }
+        return "%success";
     }
 }
