@@ -83,7 +83,7 @@ public class OrderItemDAO {
     }
 
     public void delete(int id) {
-        String sql = "delete * from orderitem where id = ?";
+        String sql = "delete from orderitem where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

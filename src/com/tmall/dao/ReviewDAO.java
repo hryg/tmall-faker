@@ -88,7 +88,7 @@ public class ReviewDAO {
     }
 
     public void delete(int id) {
-        String sql = "delete * from review where id = ?";
+        String sql = "delete from review where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

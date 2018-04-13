@@ -94,7 +94,7 @@ public class OrderDAO {
     }
 
     public void delete(int id) {
-        String sql = "delete * from order_ where id = ?";
+        String sql = "delete from order_ where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

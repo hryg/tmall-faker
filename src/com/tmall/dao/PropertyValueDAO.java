@@ -69,7 +69,7 @@ public class PropertyValueDAO {
     }
 
     public void delete(int id) {
-        String sql = "delete * from propertyvalue where id = ?";
+        String sql = "delete from propertyvalue where id = ?";
 
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
