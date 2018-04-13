@@ -194,7 +194,7 @@ public class ForeServlet extends BaseForeServlet {
         boolean bought = false;
 
         List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
-        for (OrderItem orderItem: orderItems) {
+        for (OrderItem orderItem : orderItems) {
             if (orderItem.getProduct().getId() == pid) {
                 bought = true;
                 orderItem.setNumber(orderItem.getNumber() + num);
@@ -218,6 +218,25 @@ public class ForeServlet extends BaseForeServlet {
         List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
         request.setAttribute("orderItems", orderItems);
         return "cart.jsp";
+    }
+
+    public String changeOrderItem(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (null == user) {
+            return "%fail";
+        }
+
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        int number = Integer.getInteger(request.getParameter("number"));
+        List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
+        for (OrderItem orderItem : orderItems) {
+            if (orderItem.getProduct().getId() == pid) {
+                orderItem.setNumber(number);
+                orderItemDAO.update(orderItem);
+                break;
+            }
+        }
+        return "%success";
     }
 
     public String deleteOrderItem(HttpServletRequest request, HttpServletResponse response, Page page) {
