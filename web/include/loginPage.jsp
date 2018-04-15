@@ -6,6 +6,33 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" pageEncoding="UTF-8" %>
 
+<script>
+    $(function () {
+
+        <c:if test="${!empty msg}">
+        $("span.errorMessage").html("${msg}");
+        $("div.loginErrorMessageDiv").show();
+        </c:if>
+
+        $("form.loginForm").submit(function () {
+            if (0 == $("#name").val().length || 0 == $("#password").val().length) {
+                $("span.errorMessage").html("请输入账号密码");
+                $("div.loginErrorMessageDiv").show();
+                return false;
+            }
+            return true;
+        });
+
+        $("form.loginForm input").keyup(function () {
+            $("div.loginErrorMessageDiv").hide();
+        });
+
+
+        var left = window.innerWidth / 2 + 162;
+        $("div.loginSmallDiv").css("left", left);
+    })
+</script>
+
 <div id="loginDiv" style="position: relative">
     <div class="simpleLogo">
         <a href="${contextPath}"><img src="img/site/simpleLogo.png"></a>
