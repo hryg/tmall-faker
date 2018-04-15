@@ -334,4 +334,39 @@ public class ForeServlet extends BaseForeServlet {
         orderDAO.update(order);
         return "%success";
     }
+
+    public String review(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        Order order = orderDAO.get(oid);
+        orderItemDAO.fill(order);
+        Product product = order.getOrderItems().get(0).getProduct();
+        List<Review> reviews = reviewDAO.list(product.getId());
+        productDAO.setSaleAndReviewNumber(product);
+        request.setAttribute("order", order);
+        request.setAttribute("product", product);
+        request.setAttribute("reviews", reviews);
+        return "review.jsp";
+    }
+
+    public String doreview(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        Order order = orderDAO.get(oid);
+        order.setStatus(OrderDAO.FINISH);
+        orderDAO.update(order);
+
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        Product product = productDAO.get(pid);
+        String content = request.getParameter("content");
+        content = HtmlUtils.htmlEscape(content);
+        User user = (User) request.getSession().getAttribute("user");
+
+        Review review = new Review();
+        review.setContent(content);
+        review.setUser(user);
+        review.setProduct(product);
+        review.setCreateDate(new Date());
+        reviewDAO.add(review);
+
+        return "@forereview?oid=" + oid + "&showonly=true";
+    }
 }
