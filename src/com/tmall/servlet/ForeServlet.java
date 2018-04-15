@@ -227,7 +227,7 @@ public class ForeServlet extends BaseForeServlet {
         }
 
         int pid = Integer.parseInt(request.getParameter("pid"));
-        int number = Integer.getInteger(request.getParameter("number"));
+        int number = Integer.parseInt(request.getParameter("number"));
         List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
         for (OrderItem orderItem : orderItems) {
             if (orderItem.getProduct().getId() == pid) {
