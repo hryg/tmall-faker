@@ -117,14 +117,14 @@
 
                     </td>
                 </tr>
-                <c:forEach items="${order.orderItems}" var="oi" varStatus="st">
+                <c:forEach items="${order.orderItems}" var="orderItem" varStatus="st">
                     <tr class="orderItemProductInfoPartTR">
                         <td class="orderItemProductInfoPartTD"><img width="80" height="80"
-                                                                    src="img/productSingle_middle/${oi.product.firstProductImage.id}.jpg">
+                                                                    src="img/productSingle_middle/${orderItem.product.firstProductImage.id}.jpg">
                         </td>
                         <td class="orderItemProductInfoPartTD">
                             <div class="orderListItemProductLinkOutDiv">
-                                <a href="foreproduct?pid=${oi.product.id}">${oi.product.name}</a>
+                                <a href="foreproduct?pid=${orderItem.product.id}">${orderItem.product.name}</a>
                                 <div class="orderListItemProductLinkInnerDiv">
                                     <img src="img/site/creditcard.png" title="支持信用卡支付">
                                     <img src="img/site/7day.png" title="消费者保障服务,承诺7天退货">
@@ -135,10 +135,10 @@
                         <td class="orderItemProductInfoPartTD" width="100px">
 
                             <div class="orderListItemProductOriginalPrice">￥<fmt:formatNumber type="number"
-                                                                                              value="${oi.product.originalPrice}"
+                                                                                              value="${orderItem.product.originalPrice}"
                                                                                               minFractionDigits="2"/></div>
                             <div class="orderListItemProductPrice">￥<fmt:formatNumber type="number"
-                                                                                      value="${oi.product.promotePrice}"
+                                                                                      value="${orderItem.product.promotePrice}"
                                                                                       minFractionDigits="2"/></div>
 
 
