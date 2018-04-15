@@ -1,15 +1,16 @@
 package com.tmall.servlet;
 
 import com.tmall.bean.*;
+import com.tmall.dao.OrderDAO;
 import com.tmall.dao.ProductImageDAO;
 import com.tmall.util.Page;
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class ForeServlet extends BaseForeServlet {
     public String home(HttpServletRequest request, HttpServletResponse response, Page page) {
@@ -247,5 +248,57 @@ public class ForeServlet extends BaseForeServlet {
         int oiid = Integer.parseInt(request.getParameter("oiid"));
         orderItemDAO.delete(oiid);
         return "%success";
+    }
+
+    public String createOrder(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        List<OrderItem> orderItems = (List<OrderItem>) request.getSession().getAttribute("orderItems");
+        if (orderItems.isEmpty()) {
+            return "login.jsp";
+        }
+
+        String address = request.getParameter("address");
+        String post = request.getParameter("post");
+        String receiver = request.getParameter("receiver");
+        String mobile = request.getParameter("mobile");
+        String userMessage = request.getParameter("userMessage");
+
+        Order order = new Order();
+        String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
+
+        order.setOrderCode(orderCode);
+        order.setAddress(address);
+        order.setPost(post);
+        order.setReceiver(receiver);
+        order.setMobile(mobile);
+        order.setUser(user);
+        order.setUserMessage(userMessage);
+        order.setCreateDate(new Date());
+        order.setStatus(OrderDAO.WAIT_PAY);
+        orderDAO.add(order);
+
+        float total = 0f;
+        for (OrderItem orderItem :
+                orderItems) {
+            orderItem.setOrder(order);
+            orderItemDAO.update(orderItem);
+            total += orderItem.getNumber() * orderItem.getProduct().getPromotePrice();
+        }
+
+        return "@forealipay?oid=" + order.getId() + "&total=" + total;
+    }
+
+    public String alipay(HttpServletRequest request, HttpServletResponse response, Page page) {
+        return "alipay.jsp";
+    }
+
+    public String payed(HttpServletRequest request, HttpServletResponse response, Page page) {
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        Order order = orderDAO.get(oid);
+        order.setStatus(OrderDAO.WAIT_DELIVERY);
+        order.setPayDate(new Date());
+        orderDAO.update(order);
+        request.setAttribute("order", order);
+        return "payed.jsp";
     }
 }
