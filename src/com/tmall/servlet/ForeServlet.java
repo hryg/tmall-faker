@@ -301,4 +301,12 @@ public class ForeServlet extends BaseForeServlet {
         request.setAttribute("order", order);
         return "payed.jsp";
     }
+
+    public String bought(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        List<Order> orders = orderDAO.list(user.getId(), OrderDAO.DELETE);
+        orderItemDAO.fill(orders);
+        request.setAttribute("orders", orders);
+        return "bought.jsp";
+    }
 }
