@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TmallFaker.iml" filepath="$PROJECT_DIR$/TmallFaker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TmallFakerJ2EE.iml" filepath="$PROJECT_DIR$/TmallFakerJ2EE.iml" />
     </modules>
   </component>
 </project>

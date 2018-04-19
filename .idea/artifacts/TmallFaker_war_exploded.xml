@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="TmallFaker:war exploded">
     <output-path>$PROJECT_DIR$/web/WEB-INF/classes</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="TmallFaker/web/Web" />
+      <element id="javaee-facet-resources" facet="TmallFakerJ2EE/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="TmallFaker" />
+          <element id="module-output" name="TmallFakerJ2EE" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="commons-io-1.4" />
